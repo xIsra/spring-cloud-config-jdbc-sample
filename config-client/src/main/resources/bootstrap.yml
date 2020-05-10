@@ -1,0 +1,17 @@
+#logging:
+#  level:
+#    root: DEBUG
+
+spring:
+  profiles:
+    active:
+      sample
+  application:
+    version: master
+    name: sampleconfigclient
+  server:
+    port: ${PORT}
+  cloud:
+    config:
+      failFast: true
+      uri: ${CONFIG_SERVER_URI}
