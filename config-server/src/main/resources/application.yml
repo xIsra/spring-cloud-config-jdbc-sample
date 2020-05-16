@@ -1,0 +1,30 @@
+flyway:
+  enabled: true
+server:
+  port: 9999
+spring:
+  cloud:
+    config:
+      server:
+        jdbc:
+          order: 1
+          sql: SELECT `key`,`value` from properties where application=?
+            and profile=? and label=?
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/archconfigserver?createDatabaseIfNotExist=true
+    username: root
+    password: 111111
+    hikari:
+      connection-timeout: 5000
+      maximum-pool-size: 10
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  profiles:
+    active: jdbc
