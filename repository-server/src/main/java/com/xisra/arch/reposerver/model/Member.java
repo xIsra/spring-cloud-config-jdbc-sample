@@ -1,21 +1,18 @@
 package com.xisra.arch.reposerver.model;
 
-import com.xisra.arch.reposerver.lib.scanner.SiteRepositoryScanFilter;
+import com.xisra.arch.reposerver.constant.DatabaseConstant;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
 @Data
-@SiteRepositoryScanFilter
+@Entity
+@Table(schema = DatabaseConstant.SITE_SCHEMA)
 public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    private String memberId;
+    private String username;
+    private String password;
 }

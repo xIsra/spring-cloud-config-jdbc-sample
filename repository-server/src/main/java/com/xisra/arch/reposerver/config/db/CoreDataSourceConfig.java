@@ -1,12 +1,12 @@
 package com.xisra.arch.reposerver.config.db;
 
+import com.xisra.arch.reposerver.RepositoryServerApplication;
 import com.xisra.arch.reposerver.lib.scanner.CoreRepositoryScanFilter;
 import com.xisra.arch.reposerver.model.Card;
 import com.zaxxer.hikari.HikariDataSource;
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.configuration.FluentConfiguration;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.flyway.FlywayDataSource;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -21,13 +21,13 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
-import java.util.Collections;
 import java.util.Objects;
 
 import static com.xisra.arch.reposerver.constant.DatabaseConstant.CORE_SCHEMA;
 
 @Configuration
 @EnableJpaRepositories(
+        basePackageClasses = RepositoryServerApplication.class,
         includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION,
                 classes = CoreRepositoryScanFilter.class),
         entityManagerFactoryRef = "coreEntityManagerFactory",
